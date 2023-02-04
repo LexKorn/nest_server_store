@@ -1,9 +1,9 @@
 import { Column, DataType, Model, Table, BelongsToMany, HasMany } from "sequelize-typescript";
 import {ApiProperty} from '@nestjs/swagger';
 
-// import { Role } from "src/roles/roles.model";
-// import { UserRoles } from "src/roles/user-roles.model";
-// import { Post } from "src/posts/posts.model";
+import { Role } from "src/roles/roles.model";
+import { UserRoles } from "src/roles/user-roles.model";
+// import { Post } from "src/posts/posts.model"; // Здесь прописать другие сущности, типа брендов, типов, девайсов
 
 interface UserCreationAttrs {
     email: string;
@@ -25,9 +25,9 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: false})
     password: string;
 
-    // @BelongsToMany(() => Role, () => UserRoles)
-    // roles: Role[];
+    @BelongsToMany(() => Role, () => UserRoles)
+    roles: Role[];
 
-    // @HasMany(() => Post)
+    // @HasMany(() => Post)  // Здесь прописать другие сущности, типа брендов, типов, девайсов
     // posts: Post[];
 };
